@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <title>home</title>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/home.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="header">
+        <h3 class="text-muted">Analysis based on country and category</h3>
+
+      </div>
+
+
+
+      <div class="jumbotron"  method="post" action ="{{ url_for('home') }}">
+
+        <h1>Enter your company's details </h1>
+
+        <form class="form-home" method = post action = "{{ url_for('home') }}">
+        <label for="inputName" class="sr-only">Name</label>
+        <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>
+        <label for="inputCountry" class="sr-only">Country</label>
+        <input type="name" name="inputCountry" id="inputCountry" class="form-control" placeholder="Country" required autofocus>
+        <label for="inputBudget" class="sr-only">Budget</label>
+        <input type="number" name="inputBudget" id="inputBudget" class="form-control" placeholder="Budget" required autofocus>
+        <label for="inputGoal" class="sr-only">Goal</label>
+        <input type="name" name="inputGoal" id="inputGoal" class="form-control" placeholder="Goal" required autofocus>
+        <label for="inputURL" class="sr-only">URL</label>
+        <input type="name" name="inputURL" id="inputURL" class="form-control" placeholder="URL" required autofocus>
+        <label for="inputCategory" class="sr-only">Category</label>
+        <input type="name" name="inputCategory" id="inputCategory" class="form-control" placeholder="Category" autofocus>
+        <button id="submit" class="btn btn-lg btn-primary btn-block">submit</button>
+
+
+      </form>
+      </div>
+    </div>
+
+  </body>
+
+</html>
