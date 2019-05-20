@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import sqlite3, requests
+import re
 
 conn = sqlite3.connect('cognitev.db')
 db = conn.cursor()
@@ -9,10 +10,17 @@ db.execute('CREATE TABLE IF NOT EXISTS campaign(id INTEGER PRIMARY KEY, Name TEX
 
 app = Flask(__name__)
 
-labels = db.execute('SELECT DISTINCT Country FROM campaign')
 
-values = []
+#campaings = datasets
+#countries = data/labels
+#values = count of every campaign
 
+db.execute('SELECT DISTINCT Category FROM campaign')
+datasets = db.fetchall() #category
+db.execute('SELECT Country, Category, count(category) AS value FROM campaign Group by Category,Country')
+values = db.fetchall() #data
+db.execute('SELECT DISTINCT Country FROM campaign')
+labels = db.fetchall() #countries
 colors = [
     "#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA",
     "#ABCDEF", "#DDDDDD", "#ABCABC", "#4169E1",
@@ -46,7 +54,14 @@ def home():
 
 @app.route('/bar')
 def bar():
-    bar_labels=labels
+    bar_labels=[]
+    bar_values=[]
+
+    for label in labels:
+        new_label=""
+        for c in label:
+            new_label += c
+        bar_labels.append(str(new_label))
     bar_values=values
     return render_template('bar_chart.html', title='Analysis by country and category', max=17000, labels=bar_labels, values=bar_values)
 
