@@ -9,3 +9,6 @@ how to run:
 cd to the folder and pip install then python app.py
 open in any ide and run
 or use my dockerfile to make a docker container of the project (will take time if the internet is slow)
+just docker build .
+docker run -d -p 8080:8080 <img name>
+
