@@ -1,4 +1,3 @@
 flask
 re
-sqlite3
 requests
